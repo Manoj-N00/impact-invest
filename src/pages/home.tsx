@@ -14,6 +14,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center text-center"
         style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070")',
@@ -44,28 +45,28 @@ export default function HomePage() {
         </div>
       </section>
 
-    
+      {/* Stats Section */}
       <section className="py-16 bg-muted">
         <div className="container grid grid-cols-1 md:grid-cols-3 gap-8">
           <StatsCard
             icon={<Users className="w-8 h-8" />}
             title="Active Investors"
-            value="500+"
+            value="5,000+"
           />
           <StatsCard
             icon={<TrendingUp className="w-8 h-8" />}
             title="Total Invested"
-            value="₹10L+"
+            value="₹10M+"
           />
           <StatsCard
             icon={<Heart className="w-8 h-8" />}
             title="Projects Funded"
-            value="20+"
+            value="200+"
           />
         </div>
       </section>
 
-      
+      {/* Projects Section */}
       <ProjectsSection />
     </div>
   );

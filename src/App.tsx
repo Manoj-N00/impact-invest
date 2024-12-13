@@ -7,6 +7,9 @@ import HomePage from '@/pages/home';
 import LoginPage from '@/pages/auth/login';
 import RegisterPage from '@/pages/auth/register';
 import DashboardLayout from '@/components/layouts/dashboard-layout';
+import InvestorDashboard from '@/pages/dashboard/investor';
+import CreatorDashboard from '@/pages/dashboard/creator';
+import AdminDashboard from '@/pages/dashboard/admin';
 import ProjectDetails from '@/pages/projects/[id]';
 import CreateProject from '@/pages/projects/create';
 
@@ -25,17 +28,21 @@ function App() {
                 <DashboardLayout />
               </ProtectedRoute>
             }>
-              {/* <Route path="investor" element={
+              <Route path="investor" element={
                 <ProtectedRoute allowedRoles={['investor']}>
                   <InvestorDashboard />
                 </ProtectedRoute>
-              } /> */}
-              {/* <Route path="creator" element={
+              } />
+              <Route path="creator" element={
                 <ProtectedRoute allowedRoles={['creator']}>
                   <CreatorDashboard />
                 </ProtectedRoute>
-              } /> */}
-              
+              } />
+              <Route path="admin" element={
+                <ProtectedRoute allowedRoles={['admin']}>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } />
             </Route>
 
             <Route path="/projects/create" element={

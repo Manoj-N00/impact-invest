@@ -20,7 +20,6 @@ export default function InvestorDashboard() {
     p.status === 'active' && !p.investors.some(i => i.id === user?.id)
   );
 
-  // Calculate investment tiers
   const totalInvested = myInvestments.reduce((sum, p) => 
     sum + (p.investors.find(i => i.id === user?.id)?.amount || 0), 0
   );
