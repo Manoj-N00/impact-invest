@@ -51,17 +51,17 @@ export default function HomePage() {
           <StatsCard
             icon={<Users className="w-8 h-8" />}
             title="Active Investors"
-            value="5,000+"
+            value="500+"
           />
           <StatsCard
             icon={<TrendingUp className="w-8 h-8" />}
             title="Total Invested"
-            value="₹10M+"
+            value="₹10L+"
           />
           <StatsCard
             icon={<Heart className="w-8 h-8" />}
             title="Projects Funded"
-            value="200+"
+            value="20+"
           />
         </div>
       </section>
