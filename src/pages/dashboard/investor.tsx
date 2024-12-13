@@ -9,6 +9,7 @@ import {
   TabsTrigger,
 } from '@/components/ui/tabs';
 
+
 export default function InvestorDashboard() {
   const { user } = useAuth();
   
