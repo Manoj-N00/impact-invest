@@ -135,6 +135,8 @@ export default function InvestorDashboard() {
               ))}
           </div>
 
+          
+
           {myInvestments.filter(p => p.status === 'completed').length === 0 && (
             <Card className="p-6">
               <p className="text-center text-muted-foreground">
