@@ -7,6 +7,8 @@ import HomePage from '@/pages/home';
 import LoginPage from '@/pages/auth/login';
 import RegisterPage from '@/pages/auth/register';
 import DashboardLayout from '@/components/layouts/dashboard-layout';
+import ProjectDetails from '@/pages/projects/[id]';
+import CreateProject from '@/pages/projects/create';
 
 function App() {
   return (
@@ -23,9 +25,26 @@ function App() {
                 <DashboardLayout />
               </ProtectedRoute>
             }>
+              {/* <Route path="investor" element={
+                <ProtectedRoute allowedRoles={['investor']}>
+                  <InvestorDashboard />
+                </ProtectedRoute>
+              } /> */}
+              {/* <Route path="creator" element={
+                <ProtectedRoute allowedRoles={['creator']}>
+                  <CreatorDashboard />
+                </ProtectedRoute>
+              } /> */}
+              
             </Route>
-          </Routes>
 
+            <Route path="/projects/create" element={
+              <ProtectedRoute allowedRoles={['creator']}>
+                <CreateProject />
+              </ProtectedRoute>
+            } />
+            <Route path="/projects/:id" element={<ProjectDetails />} />
+          </Routes>
           <Toaster />
         </AuthProvider>
       </Router>

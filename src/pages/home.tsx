@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BarChart3, Heart, Users, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import { ProjectsSection } from "@/components/home/projects-section";
 
 export default function HomePage() {
   const scrollToProjects = () => {
@@ -66,7 +66,8 @@ export default function HomePage() {
         </div>
       </section>
 
-     
+      {/* Projects Section */}
+      <ProjectsSection />
     </div>
   );
 }
