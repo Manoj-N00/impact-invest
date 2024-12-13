@@ -14,7 +14,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center text-center"
         style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070")',
@@ -45,7 +44,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+    
       <section className="py-16 bg-muted">
         <div className="container grid grid-cols-1 md:grid-cols-3 gap-8">
           <StatsCard
