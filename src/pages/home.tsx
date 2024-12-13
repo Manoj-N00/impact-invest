@@ -66,7 +66,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Projects Section */}
+      
       <ProjectsSection />
     </div>
   );
