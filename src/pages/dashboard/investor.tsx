@@ -1,27 +1,25 @@
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { Card } from '@/components/ui/card';
 import { mockProjects } from '@/lib/data/mock-projects';
 import { useAuth } from '@/lib/auth/auth-context';
 import { ProjectCard } from '@/components/projects/project-card';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs';
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function InvestorDashboard() {
   const { user } = useAuth();
-  
-  const myInvestments = mockProjects.filter(p => 
+
+  const myInvestments = mockProjects.filter(p =>
     p.investors.some(i => i.id === user?.id)
   );
 
-  const availableProjects = mockProjects.filter(p => 
+  const availableProjects = mockProjects.filter(p =>
     p.status === 'active' && !p.investors.some(i => i.id === user?.id)
   );
 
-  const totalInvested = myInvestments.reduce((sum, p) => 
+  const completedProjects = myInvestments.filter(p => p.status === 'completed');
+
+  const totalInvested = myInvestments.reduce((sum, p) =>
     sum + (p.investors.find(i => i.id === user?.id)?.amount || 0), 0
   );
 
@@ -37,9 +35,15 @@ export default function InvestorDashboard() {
   const stats = {
     totalInvested,
     activeProjects: myInvestments.filter(p => p.status === 'active').length,
-    completedProjects: myInvestments.filter(p => p.status === 'completed').length,
+    completedProjects: completedProjects.length,
     tier: investorTier
   };
+
+  useEffect(() => {
+    if (completedProjects.length > 0) {
+      toast.success('One or more projects have been completed!');
+    }
+  }, [completedProjects]);
 
   return (
     <div className="space-y-8">
@@ -81,7 +85,7 @@ export default function InvestorDashboard() {
           <TabsTrigger value="active">My Investments</TabsTrigger>
           <TabsTrigger value="completed">Completed</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="available" className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
             {availableProjects.map((project) => (
@@ -124,20 +128,16 @@ export default function InvestorDashboard() {
 
         <TabsContent value="completed" className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
-            {myInvestments
-              .filter(p => p.status === 'completed')
-              .map((project) => (
-                <ProjectCard 
-                  key={project.id} 
-                  project={project}
-                  showInvestButton={false}
-                />
-              ))}
+            {completedProjects.map((project) => (
+              <ProjectCard 
+                key={project.id} 
+                project={project}
+                showInvestButton={false}
+              />
+            ))}
           </div>
 
-          
-
-          {myInvestments.filter(p => p.status === 'completed').length === 0 && (
+          {completedProjects.length === 0 && (
             <Card className="p-6">
               <p className="text-center text-muted-foreground">
                 No completed investments
