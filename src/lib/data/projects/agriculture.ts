@@ -49,7 +49,7 @@ export const agricultureProjects: Project[] = [
         id: '110',
         name: 'Deepa Iyer',
         amount: 15000,
-        investedAt: '2024-02-18'
+        investedAt: '2024-08-18'
       },
       {
         id: '111',

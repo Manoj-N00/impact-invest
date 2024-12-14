@@ -1,39 +1,54 @@
-import { BarChart as RechartsBarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  PieChart as RechartsPieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  Label
+} from 'recharts';
 
-interface BarChartProps {
+interface PieChartProps {
   data: Array<{
     [key: string]: string | number;
   }>;
   dataKey: string;
-  xAxisKey: string;
+  nameKey: string;
+  colors?: string[];
   height?: number;
   formatter?: (value: number) => [string, string];
+  labelFormatter?: (label: string) => string;
 }
 
-export function BarChart({ 
-  data, 
-  dataKey, 
-  xAxisKey,
+export function PieChart({
+  data,
+  dataKey,
+  nameKey,
+  colors = ["#8884d8", "#82ca9d", "#ffc658"],
   height = 300,
-  formatter = (value: number) => [`₹${value.toLocaleString()}`, 'Amount']
-}: BarChartProps) {
+  formatter = (value: number) => [`₹${value.toLocaleString()}`, 'Amount'],
+  labelFormatter = (label: string) => label
+}: PieChartProps) {
   return (
     <div style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
-        <RechartsBarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis 
-            dataKey={xAxisKey} 
-            tick={{ fontSize: 12 }}
-          />
-          <YAxis 
-            tick={{ fontSize: 12 }}
-          />
-          <Tooltip 
-            formatter={formatter}
-          />
-          <Bar dataKey={dataKey} fill="hsl(var(--primary))" />
-        </RechartsBarChart>
+        <RechartsPieChart>
+          <Pie
+            data={data}
+            dataKey={dataKey}
+            nameKey={nameKey}
+            cx="50%"
+            cy="50%"
+            outerRadius="70%"
+            label={(entry) => labelFormatter(entry[nameKey] as string)}
+            isAnimationActive={true}
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+            ))}
+            <Label position="center" />
+          </Pie>
+          <Tooltip formatter={formatter} />
+        </RechartsPieChart>
       </ResponsiveContainer>
     </div>
   );
