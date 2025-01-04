@@ -14,6 +14,7 @@
 - TypeScript
 - Tailwind CSS
 - Vite
+- shadcn
 
 ## How to use
 1.Download the Repo
